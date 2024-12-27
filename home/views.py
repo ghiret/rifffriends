@@ -1,5 +1,6 @@
 # Create your views here.
 from django.http import HttpResponse, HttpRequest, JsonResponse
+from django.conf import settings
 
 
 def credits(request: HttpRequest):
@@ -12,6 +13,5 @@ def about(request: HttpRequest):
     return HttpResponse(content=content, content_type="text/html")
 
 
-def version(request: HttpRequest):
-    content = {"version": "0.0.1"}
-    return JsonResponse(content)
+def version(request: HttpRequest) -> JsonResponse:
+    return JsonResponse({"version": settings.APP_VERSION})
